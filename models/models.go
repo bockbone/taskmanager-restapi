@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	"gopkg.in/mgo.vs/bson"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type(

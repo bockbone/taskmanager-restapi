@@ -39,7 +39,7 @@ func initKeys() {
 
 func GenerateJWT(anme, role string) (string,error) {
 	//Create a signer for rsa 256
-	t := jwt.New(jwt.GetSigningMethod('RS256'))
+	t := jwt.New(jwt.GetSigningMethod("RS256"))
 
 	//Set claim for jwt token
 	t.Claims["iss"] = "admin"
@@ -63,7 +63,7 @@ func Authorize(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	token, err := jwt.ParseFromRequest(r, func(token *jwt.Token) (interface{}, error) {
 		//Verify token with public key which is the couter part of private key
 		return verifyKey, nil
-	}
+	})
 
 	if err != nil {
 		switch err.(type) {
@@ -76,7 +76,7 @@ func Authorize(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 					w,
 					err,
 					"Access Token is expired, get a new token",
-					401
+					401,
 				)
 				return
 
@@ -85,7 +85,7 @@ func Authorize(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 					w,
 					err,
 					"Error while parsing the Access Token!",
-					500
+					500,
 				)
 				return
 				
@@ -95,7 +95,7 @@ func Authorize(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 				w,
 				err,
 				"Error while parsing the Access Token!",
-				500
+				500,
 			)
 			return
 			
@@ -108,7 +108,7 @@ func Authorize(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 			w,
 			err,
 			"Invalid Access Token!",
-			401
+			401,
 		)
 	}
 }

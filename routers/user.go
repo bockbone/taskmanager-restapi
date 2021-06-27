@@ -1,7 +1,8 @@
 package routers
 
 import (
-	"github.com/gorilla/mux"	"github.com/bockbone/taskmanager/controllers"
+	"github.com/bockbone/taskmanager/controllers"
+	"github.com/gorilla/mux"
 )
 
 
